@@ -1,0 +1,16 @@
+{
+  "name": "cca-f-playwright",
+  "version": "0.1.0",
+  "scripts": {
+    "skilljar": "tsx skilljar-tracker.ts",
+    "mock": "tsx mock-exam-runner.ts",
+    "prefill": "tsx partner-form-prefiller.ts",
+    "publish": "tsx linkedin-publisher.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "playwright": "^1.49.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

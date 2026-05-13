@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+playwright-report/
+test-results/
+dist/
+build/
+.DS_Store
+*.log
+.claude/hooks/tool-use.log
+playwright/.cache/
