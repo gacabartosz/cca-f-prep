@@ -1,7 +1,9 @@
 # Projekt cca-f-prep
 
 ## Kontekst
-Prowadzi go **Bartosz Gaca** (bartoszgaca.pl) — solo technical builder z JDG (NIP 5993112591, Dzierżów), CTO @ BeeCommerce, MCP Protocol Pioneer (6 publicznych MCP serverów, 145+ tools), zarządzający w produkcji 28+ aplikacjami / 55 kontenerami Docker / 4 serwerami (K8s + 3 VPS) — solo, z AI-native workflow.
+Prowadzi go **Bartosz Gaca**, JDG **bartoszgaca.pl** (NIP 5993112591, Dzierżów, Polska) — solo technical builder, MCP Protocol Pioneer (6 publicznych MCP serverów, 145+ tools), zarządzający w produkcji 28+ aplikacjami / 55 kontenerami Docker / 4 serwerami (K8s + 3 VPS) — solo, z AI-native workflow.
+
+Aplikacja do Claude Partner Network składana **z JDG bartoszgaca.pl** (NIE z BeeCommerce, gdzie Bartosz pełni rolę CTO równolegle — patrz `partner-network/why-bartoszgaca-not-beecommerce.md`).
 
 ## Cel projektu (kolejność priorytetu)
 1. Zdać **Claude Certified Architect — Foundations (CCA-F)**, próg 720/1000

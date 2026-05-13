@@ -22,8 +22,8 @@
 | Website | https://bartoszgaca.pl |
 | GitHub | https://github.com/gacabartosz |
 | LinkedIn | https://linkedin.com/in/bartosz-gaca (verify exact slug przy submit) |
-| Primary contact | Bartosz Gaca, Founder & CTO |
-| Email | bartosz.gaca@gmail.com (primary) / it@beecommerce.pl (work) |
+| Primary contact | Bartosz Gaca, Founder (JDG) |
+| Email | bartosz.gaca@gmail.com (primary), kontakt@bartoszgaca.pl (jeśli aktywny — verify przy submit) |
 | Phone | (uzupełnij przy submit) |
 | Time zone | Europe/Warsaw (UTC+1/+2) |
 
@@ -45,7 +45,7 @@ W kolejności głębokości doświadczenia:
 
 1. **Legal-tech / regulatory automation** — 3 produkcyjne produkty (reklamacje24.pl, odpisznapismo.pl, fixmynotice.com), MCP server dla polskiego KSeF (e-invoicing), discovery luki walidacyjnej w państwowym API
 2. **SME / SMB process automation** — biznesbezklikania.pl (suite automatyzacji dla MŚP), n8n pipelines dla MŚP (mail→parsowanie→XLS→chmura), abonamentowy model
-3. **E-commerce** — 12 R&D AI projects w BeeCommerce (employer/equity context), karlik, rentgen, lookbooki, porównywarki
+3. **E-commerce** — doświadczenie z 12 R&D AI projects (karlik, rentgen, lookbooki, porównywarki) jako CTO w BeeCommerce (parallel role / professional experience). JDG bartoszgaca.pl **nie świadczy usług e-commerce w ramach Partner Network** (osobny pipeline klientów); kompetencja wymieniona jako background depth, nie jako vertical offering
 4. **Agritech** — stadomat.pl (SaaS multi-tenant dla hodowców bydła, IRZ integration, ZUS/ARiMR)
 5. **EdTech** — apexskills.pl, edustation.com.pl
 
@@ -162,7 +162,267 @@ Repo `cca-f-prep` jest publicznym dowodem przygotowania. Linkujemy do niego w ap
 - **No mobile dev**. iOS/Android nie jest moją kompetencją — partnerstwo skupia się na web + backend + MCP + Claude Code.
 - **No own model training**. Pracuję z Claude/OpenRouter na poziomie aplikacyjnym, nie trenuje własnych LLM-ów.
 
-## 12. Submission checklist (do final review przed submitem)
+## 12. Solution architecture diagrams (proof of technical depth)
+
+### A. reklamacje24.pl — production pipeline (Stack zweryfikowany w `/Users/gaca/projects/personal/reklamacje24.pl/README.md`)
+
+```
+                     ┌──────────────────────────────────────┐
+                     │  USER (B2C consumer, mobile/desktop) │
+                     └──────────────────────────────────────┘
+                                     │ HTTPS
+                                     ▼
+                     ┌──────────────────────────────────────┐
+                     │  nginx (reverse proxy, SSL, gzip)    │
+                     └──────────────────────────────────────┘
+                                     │
+                                     ▼
+                ┌────────────────────────────────────────────┐
+                │  React + TypeScript SPA                    │
+                │  - Upload zdjęcia / PDF / tekstu           │
+                │  - Display generated pismo + PDF download  │
+                └────────────────────────────────────────────┘
+                                     │ POST /api/analyze
+                                     ▼
+        ┌─────────────────────────────────────────────────────────┐
+        │  Node.js 18+ / Express backend                          │
+        │  pm2 process manager, Docker port 4003                  │
+        │  Prisma ORM (PostgreSQL 14+)                            │
+        └─────────────────────────────────────────────────────────┘
+                                     │
+              ┌──────────────────────┼─────────────────────────┐
+              ▼                      ▼                         ▼
+       ┌─────────────┐      ┌────────────────┐       ┌─────────────────┐
+       │ OpenRouter  │      │  Stripe API    │       │  PostgreSQL 14+ │
+       │ (multi-     │      │  acct_1SO3Io   │       │  - users        │
+       │  model AI)  │      │  4.99 PLN/use  │       │  - analyses     │
+       │             │      │  P24+BLIK+karta│       │  - generations  │
+       └─────────────┘      └────────────────┘       └─────────────────┘
+              │
+   ┌──────────┴───────────────────────────────────┐
+   ▼                              ▼               ▼
+┌─────────────┐         ┌──────────────────┐  ┌────────────────────┐
+│ Claude      │         │ smart-router     │  │ Image analysis     │
+│ (Sonnet/    │         │ (FusionRoute)    │  │ (computer vision)  │
+│  Opus dla   │         │ - Haiku: OCR     │  │                    │
+│  generacji  │         │ - Sonnet: pismo  │  └────────────────────┘
+│  pism UoPK) │         │ - Opus: multi-   │
+└─────────────┘         │   issue case     │
+                        └──────────────────┘
+                                     │
+                                     ▼
+                     ┌─────────────────────────────────────┐
+                     │  PDF generation + email delivery    │
+                     │  (jsPDF / nodemailer)               │
+                     └─────────────────────────────────────┘
+                                     │
+                                     ▼
+              ┌──────────────────────────────────────────┐
+              │  GitHub Actions CI/CD → VPS Docker       │
+              │  Memory: project_reklamacje24_deploy.md  │
+              └──────────────────────────────────────────┘
+```
+
+### B. Multi-agent `team-dev` orchestration (Skill: `~/.agents/skills/team-dev/SKILL.md`)
+
+```
+[BARTOSZ]
+   │
+   ▼
+[/team-dev <domena> <brief>]
+   │
+   ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│  LAYER 1 — Planning                                                  │
+│  ┌────────────┐                                                      │
+│  │ PM agent   │ — decomposes brief → 10-phase pipeline               │
+│  │            │ — reads project CONTEXT.md + .team-dev/state/        │
+│  └─────┬──────┘                                                      │
+│        │                                                             │
+│        ▼                                                             │
+│  LAYER 2 — Design (parallel)                                         │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────┐ ┌───────────────┐        │
+│  │ architect│ │ ux       │ │ data-modeler │ │ infra-planner │        │
+│  └────┬─────┘ └────┬─────┘ └──────┬───────┘ └──────┬────────┘        │
+│       │            │              │                │                  │
+│       └────────────┴──────────────┴────────────────┘                  │
+│                          │                                            │
+│                          ▼                                            │
+│  LAYER 3 — Implementation (parallel)                                  │
+│  ┌─────────┐ ┌─────────┐ ┌────────┐ ┌──────────┐ ┌────────┐           │
+│  │frontend │ │backend  │ │db      │ │integrate │ │ deploy │           │
+│  └────┬────┘ └────┬────┘ └───┬────┘ └─────┬────┘ └───┬────┘           │
+│       │           │          │            │          │                │
+│       └───────────┴──────────┴────────────┴──────────┘                │
+│                          │                                            │
+│                          ▼                                            │
+│  LAYER 4 — Review / QA / Security / Deploy / Monitor                  │
+│  ┌──────────┐ ┌─────────────┐ ┌──────────┐ ┌─────────┐ ┌─────────┐    │
+│  │code-     │ │security-    │ │qa-tester │ │release- │ │monitor- │    │
+│  │reviewer  │ │auditor      │ │          │ │manager  │ │ops      │    │
+│  └──────────┘ └─────────────┘ └──────────┘ └─────────┘ └─────────┘    │
+└──────────────────────────────────────────────────────────────────────┘
+                          │
+                          ▼
+                   Output: PR + tests + deploy + monitoring
+```
+
+Wszystkie 19 agentów zdefiniowane w `~/.agents/skills/team-dev/SKILL.md` jako oddzielne markdown agent files. Pipeline zweryfikowalny w description tego skilla.
+
+---
+
+## 13. Quantified Claude usage / cost optimization (Build with Claude evidence)
+
+### A. Multi-model routing rationale (`smart-router` aka FusionRoute)
+
+| Task type | Model wybrany | Powód |
+|---|---|---|
+| Klasyfikacja typu wady produktu (reklamacje24) | Haiku | Proste klasyfikacje, niski koszt, szybki response time |
+| OCR cleanup (odpisznapismo, po Tesseract.js) | Haiku | Czyszczenie tekstu — prosty task, koszty must scale do 4.99 PLN AOV |
+| Generowanie pisma reklamacyjnego z UoPK | Sonnet | Wymaga precyzji prawnej + cytowanie artykułów; quality > cost |
+| Multi-issue legal analysis (skomplikowane sprawy) | Opus | Reasoning depth, mniej częste, dopuszczalna wyższa cena |
+| Multi-agent orchestration (team-dev planowanie) | Opus | Architectural decisions wymagają depth |
+| Multi-agent execution (team-dev specjaliści) | Sonnet | Implementation tasks z jasnym specem |
+| Content moderation hooks | Haiku | High-frequency, low-stake |
+
+Logika routing nie jest hardcoded per task — `smart-router` używa 6-dim scoringu (complexity, depth required, business stake, frequency, output length, latency tolerance) i decyduje dynamicznie. Pełna logika w `~/.claude/skills/smart-router/SKILL.md`.
+
+### B. Prompt caching strategy
+
+- **Aplikantai/odpisznapismo/biznesbezklikania**: cachowane prompty systemowe + (per request) RAG context z GitHub knowledge bases. TTL alignedSquare z natural session length.
+- **Cca-f-prep slash commands**: krótkie prompty, nie wymagają cachowania.
+- **gaca-core**: cache layer na poziomie AI Bus dla powtarzalnych queries (multi-tenant aggregation).
+
+### C. Cost discipline
+
+- Stripe revenue (reklamacje24 4.99 PLN/use) wymusza CPA <2 PLN → discipline w doborze modelu na low-margin operations
+- Multi-model routing oszczędza ~40-60% vs naive "Opus dla wszystkiego" approach (publicznie wzmiankowany w `smart-router` SKILL description: "cost-aware model router")
+- Metryki realne (Stripe + OpenRouter dashboards) do uzupełnienia przed submit aplikacji — patrz section 12 reklamacje24.pl pipeline
+
+---
+
+## 14. Risk register & mitigation
+
+| Risk reviewer flag'a | Mitigation | Source / Evidence |
+|---|---|---|
+| Solo entrepreneur — bus factor 1 | (a) AI-native workflow jako multiplier, (b) 4 własne serwery — zero dependency na managed cloud, (c) pełna dokumentacja w repo `cca-f-prep`, (d) sieć współpracowników kontraktowych, (e) plan team scaling 6–12 mc w sekcji 15 | Skills profile FAZA 1 (live SSH 15.03.2026), team-dev/team-mar/team-strat = AI-native multiplier |
+| Polish-first vertical — nisza geograficzna | (a) Polska = 38M EU member, (b) `fixmynotice.com` jako EN-market proof-of-capability, (c) wszystkie technologie open-source są EN, więc content/docs po EN tworzone z marszu | fixmynotice.com — production EN-market deployment |
+| Reference customers głównie own products | (a) 6 publicznych MCP servers + 14+ Skills + PyPI package = open-source impact substytuuje brak corporate references, (b) Stripe revenue na własnych produktach to **real-world traction**, nie demo, (c) 2 external (woodconsulting, BeeCommerce employer-context) w trakcie consent process | Memory: `reference_stripe_accounts.md`, GitHub `gacabartosz/*` repos |
+| No mobile / no ML training | Scope jasno zdefiniowany: web + backend + MCP + Claude Code workflows. Mobile w razie potrzeby delegowany do kontraktora; ML training (trenowanie własnych modeli) **świadomie poza zakresem** — Claude jest providerem | `application-draft.md` sekcja 11 honest disclosures |
+| Konflikt interesów BeeCommerce vs JDG | Different verticals (e-commerce vs legal-tech/SME), different clientele (enterprise vs MŚP), different pricing, different IP ownership | `why-bartoszgaca-not-beecommerce.md` |
+
+---
+
+## 15. Team scaling plan (6–12 mc)
+
+### Faza 0–3 mc (status quo)
+- Solo + AI-native workflow
+- Multi-agent skille (`team-dev`, `team-mar`, `team-strat`) jako "virtual team"
+- Sieć kontraktorów (na żądanie)
+
+### Faza 3–6 mc
+- **+1 contractor frontend / Claude Code workflows** — 0.5 FTE, polski rynek
+- **+1 advisor legal-tech** — polski adwokat / radca prawny, 0.1 FTE, walidacja pism prawnych generowanych w reklamacje24/odpisznapismo
+- Formalne SLA dla pierwszych Partner Network klientów
+
+### Faza 6–12 mc
+- **+1 senior engineer** (full-stack, Claude experience) — etat lub B2B
+- **+1 mid engineer** (full-stack lub MCP focus) — etat
+- **+1 sales / customer success** — pierwszy non-tech hire
+- Rozważenie założenia sp. z o.o. lub Y Combinator-style spinout JDG, jeśli wolumen klientów PartnerNetwork to uzasadni
+
+### Hiring profile
+- Full-stack devs PL/CEE, doświadczenie z Claude lub OpenAI w produkcji
+- Znajomość polskich regulacji legalnych/fintech (legal-tech) lub agritech (rolnictwo)
+- AI-native workflow comfort (Claude Code, MCP, multi-agent)
+- Junior friendly dla mid-level role (mentorship Bartosza)
+
+### Budget rationale
+Budget będzie scaled na bazie revenue z Partner Network engagements + revenue z 3 produkcyjnych SaaS-ów. Konkretne kwoty do uzupełnienia po pierwszej rozmowie z Anthropic GTM (sekcja 10.4) — wymaga znajomości oczekiwanego deal-flow.
+
+---
+
+## 16. Pricing & engagement models
+
+Bartosz oferuje 3 pakiety dla klientów konsultingowych (źródło: `LINKEDIN-STRATEGY.md` "About Section" + `user_linkedin_goals.md` memory):
+
+### A. MVP Sprint
+- **Co**: "MVP w tydzień / 1-2 tyg" — od pomysłu do działającego produktu
+- **Format**: jednorazowy projekt, fixed-price
+- **Dla kogo**: startupy, founderzy, product ownerzy z konkretnym pomysłem
+- **Cena**: do potwierdzenia przed submitem (bartoszgaca.pl/cennik lub manual specification)
+
+### B. Builder Retainer
+- **Co**: "Twój builder na stałe" — abonament miesięczny
+- **Włącza**: Claude Code workflows, MCP integracje, code review, AI strategy guidance
+- **Dla kogo**: firmy, które potrzebują continuous AI/automation capability bez etatowego CTO
+- **Cena**: do potwierdzenia przed submitem
+
+### C. MCP / Skill Custom Build
+- **Co**: dedykowany MCP server lub Claude Code skill pod konkretny use case klienta
+- **Format**: fixed-price per artefakt, deliverable = open-source repo + 30-day support
+- **Dla kogo**: firmy, które chcą custom integrację z własnym wewnętrznym systemem
+- **Cena**: do potwierdzenia przed submitem
+
+### Wszystkie pakiety zawierają
+- Pre-engagement discovery call (15 min)
+- Statement of Work (SOW) per engagement (template w `partner-network/sample-sow-template.md` — TODO: dodać)
+- Polish-language support
+- Open-source kod gdzie applicable
+- IP ownership: client owns business logic, Bartosz może referować artefakt jako case study (after consent)
+
+---
+
+## 17. Sample SOW / engagement template
+
+Wzorzec Statement of Work, który Bartosz prześle nowemu klientowi po discovery call. **Wzorzec, nie konkretny SOW**:
+
+```markdown
+# Statement of Work — [Client Name]
+## Strony
+Zleceniodawca: [Client legal entity]
+Wykonawca: Bartosz Gaca, JDG (NIP 5993112591, ul. Platynowa 14, 66-446 Dzierżów)
+
+## Pakiet
+[MVP Sprint / Builder Retainer / MCP-Skill Custom Build]
+
+## Zakres
+- [Konkretny deliverable #1 z mierzalnym kryterium]
+- [Konkretny deliverable #2]
+- [...]
+
+## Milestones
+| # | Co | Data | Akceptacja |
+|---|---|---|---|
+| 1 | Discovery / spec | T+3d | Client review |
+| 2 | MVP / first deliverable | T+10d | Live demo |
+| 3 | Final handover | T+14d | Acceptance criteria checklist |
+
+## Cena
+[Fixed-price PLN / Monthly retainer PLN] netto + 23% VAT (faktura JDG NIP 5993112591)
+
+## Płatność
+50% przy rozpoczęciu, 50% przy odbiorze (lub miesięcznie z góry dla retainera)
+Metoda: przelew bankowy / Stripe / Przelewy24
+
+## IP / Własność
+- Kod produktowy (business logic specyficzna dla Client): własność Client
+- Kod generic (utilities, MCP wrapper patterns, Skills): może być open-source pod licencją MIT (po zgodzie Client)
+- Bartosz może wymienić engagement jako case study (anonymized lub nazwany — po zgodzie Client)
+
+## NDA
+Standardowo. Wzorzec dostępny.
+
+## Termination
+14 dni notice. Faktura proporcjonalna do faktycznie wykonanej pracy.
+
+## Disputes
+Sąd właściwy: Gorzów Wielkopolski (siedziba JDG)
+```
+
+---
+
+## 18. Submission checklist (do final review przed submitem)
 
 - [ ] CCA-F zaliczone (dowód: dyplom / Anthropic Academy badge)
 - [ ] 3 customer reference consents pisemnie potwierdzone
@@ -172,10 +432,16 @@ Repo `cca-f-prep` jest publicznym dowodem przygotowania. Linkujemy do niego w ap
 - [ ] Strona `bartoszgaca.pl/claude-partner` z pitch deck PDF
 - [ ] `playwright/partner-form-prefiller.ts` przetestowany na devie portalu (gdy uda się zalogować i obejrzeć formularz)
 - [ ] Final read-through przez subagenta `partner-strategist`
+- [ ] Pricing PLN wpisany w sekcji 16 (z bartoszgaca.pl/cennik)
+- [ ] CEIDG year founded uzupełnione w sekcji 1
+- [ ] Exact LinkedIn slug verified
+- [ ] Reklamacje24 + odpisznapismo + biznesbezklikania metryki (z GA4 + Stripe + admin panels) uzupełnione w case studies
 - [ ] Submit + screenshot confirmation → commit do repo
 
-## 13. Post-submit monitoring
+## 19. Post-submit monitoring
 
 - ETA decyzji: 6–8 tygodni (sygnał z niezależnych źródeł, niepotwierdzony oficjalnie przez Anthropic)
-- Qualification call preparation: demo Claude Code session "od zera do polskiego skilla w 15 minut"
+- Qualification call preparation: pełen Q&A draft w `partner-network/qualification-call-prep.md`; demo Claude Code session "od zera do polskiego skilla w 15 minut"
 - Każde follow-up od Anthropic → screenshot/log do `postep/partner-network-timeline.md`
+- Po akceptacji: update LinkedIn, bartoszgaca.pl/claude-partner z badge, ogłoszenie publiczne (LinkedIn post + blog post)
+- Po odrzuceniu: feedback request, iteracja na słabe punkty, re-aplikacja po 6 mc (jeśli możliwa)

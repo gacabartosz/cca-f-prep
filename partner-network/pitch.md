@@ -26,7 +26,7 @@
 - **Jedyne polskie publiczne materiały o Claude Code** (blog `bartoszgaca.pl`, LinkedIn auto-publish daemon)
 - **Pierwszy MCP dla polskiego rynku prawnego/podatkowego** (ksef-mcp już istnieje; `pl-legal-docs` w roadmap)
 - Polish-vertical SaaS w produkcji: `reklamacje24.pl` (UoPK pisma reklamacyjne, Stripe 4.99 PLN/use), `odpisznapismo.pl` (analiza pism urzędowych), `fixmynotice.com` (EN-market document AI)
-- Headline LinkedIn: "Buduję MVP, MCP i integracje API | Claude Code | CTO @ BeeCommerce" (67 zn., mobile-safe)
+- Headline LinkedIn (planowany update na partnership push): "Buduję MVP, MCP i integracje API | Claude Code | bartoszgaca.pl" (mobile-safe). Obecny LI headline wymienia również rolę CTO @ BeeCommerce — to fact (parallel role), nie identity dla tej aplikacji.
 
 ## Dlaczego Anthropic mnie potrzebuje
 1. **Globalni partnerzy nie schodzą do polskiego MŚP** — Accenture/Deloitte nie obsłużą 5-osobowej kancelarii w Krakowie. Ja obsługuję.
