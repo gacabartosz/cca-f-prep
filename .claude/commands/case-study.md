@@ -2,7 +2,7 @@
 description: Strukturyzuje case study z faktów dostarczonych przez Bartosza. Nie zmyśla liczb.
 ---
 
-Produkt do opisania: $ARGUMENTS (np. aplikantai, odpisznapismo, biznesbezklikania)
+Produkt do opisania: $ARGUMENTS (np. reklamacje24, odpisznapismo, biznesbezklikania)
 
 Użyj subagenta `case-writer`. Przed napisaniem czegokolwiek:
 1. Sprawdź `partner-network/case-studies/$ARGUMENTS.md` — jakie sekcje są wypełnione, gdzie są TODO

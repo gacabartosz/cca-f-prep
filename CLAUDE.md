@@ -41,7 +41,7 @@ Zero fraz: rewolucja, game changer, must have, leverage, zmienia wszystko, AI to
 
 ## Realne assety do aplikacji (zweryfikowane)
 - **6 publicznych MCP serverów**: `linkedin-mcp` (25 tools), `seo-gaca-mcp` (37 tools, na PyPI), `facebook-mcp` (28 tools), `ksef-mcp` (30 tools, pierwszy open-source MCP dla polskiego KSeF), `mcp-universal-adapter`, `popcorn` (5 tools)
-- **3 publiczne produkcyjne SaaS na Claude/AI**: aplikantai.pl (legal AI), odpisznapismo.pl (analiza pism), biznesbezklikania.pl (automation suite)
+- **3 publiczne produkcyjne SaaS na Claude/AI**: reklamacje24.pl (UoPK pisma, Stripe 4.99 PLN/use), odpisznapismo.pl (analiza pism urzędowych), biznesbezklikania.pl (automation suite v4.0)
 - **2 dodatkowe produkcyjne**: stadomat.pl (SaaS multi-tenant), reklamacje24.pl (4.99 PLN/use, Stripe)
 - **gaca-core** — AI Bus agregujący 50+ modeli od 11 providerów w jednym endpoincie
 - **Discovery**: luka walidacyjna w KSeF API v2 (art. 106e ust. 11 UoVAT) — znaleziona podczas budowy ksef-mcp

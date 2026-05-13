@@ -22,9 +22,9 @@ Globalny partner nie zbuduje tej warstwy. **Ja zamykam tę lukę.**
 |---|---|
 | **RODO / UODO** | Interpretacje polskie, presidio-local-anonymizer (Chrome ext + Microsoft Presidio), planowane: `pl-rodo-compliance` skill |
 | **VAT / KSeF (e-invoicing)** | `ksef-mcp` (30 tools), pierwszy open-source MCP dla polskiego KSeF, discovery luki walidacyjnej w API v2 (art. 106e ust. 11 UoVAT) |
-| **Kodeks Cywilny / KPC** | aplikantai.pl (24+ asystentów AI prawniczych), planowany skill `pl-umowa` |
-| **Kodeks Pracy** | aplikantai.pl (asystent prawa pracy), templates umów B2B/zlecenie/dzieło |
-| **Ordynacja podatkowa** | aplikantai.pl, planowany skill `pl-faktura-vat` |
+| **Kodeks Cywilny / KPC** | Planowany skill `pl-umowa` (roadmap); odpisznapismo.pl generuje odpowiedzi cytujące KC w realnych pismach urzędowych |
+| **Kodeks Pracy** | Planowany skill `pl-umowa` (B2B/zlecenie/dzieło/UoP — roadmap); templates umów na bartoszgaca.pl |
+| **Ordynacja podatkowa** | Planowany skill `pl-faktura-vat` (roadmap); `ksef-mcp` (kontekst e-invoicing — production) |
 | **UoPK (prawa konsumenta)** | reklamacje24.pl (production, Stripe 4.99 PLN/use), generator pism reklamacyjnych |
 | **IRZ / ARiMR (rolnictwo)** | stadomat.pl — integracja z państwowym IRZ API (rejestr zwierząt) |
 | **PUE ZUS / ePUAP** | mcp-zus (TODO: link), kedu validation, ZUA/ZWUA/ZCNA/ZIUA/DRA building, ePUAP send/receive |

@@ -13,7 +13,7 @@ Każdy plik to dowód praktyki. Repo *jest* aplikacją, nie dekiem. Slash comman
 ## Dowody produkcyjne (do aplikacji partnerskiej)
 
 - **6 publicznych MCP serwerów / 145+ tools**: `linkedin-mcp` (25), `seo-gaca-mcp` (37, na PyPI), `facebook-mcp` (28), `ksef-mcp` (30 — pierwszy open-source MCP dla polskiego KSeF), `mcp-universal-adapter`, `popcorn` (5).
-- **28+ aplikacji w produkcji**: legal-tech ([aplikantai.pl](https://aplikantai.pl), [odpisznapismo.pl](https://odpisznapismo.pl), [reklamacje24.pl](https://reklamacje24.pl), [fixmynotice.com](https://fixmynotice.com)), automatyzacja MŚP ([biznesbezklikania.pl](https://biznesbezklikania.pl)), agritech ([stadomat.pl](https://stadomat.pl)) i więcej.
+- **28+ aplikacji w produkcji**: legal-tech ([odpisznapismo.pl](https://odpisznapismo.pl), [reklamacje24.pl](https://reklamacje24.pl), [fixmynotice.com](https://fixmynotice.com)), automatyzacja MŚP ([biznesbezklikania.pl](https://biznesbezklikania.pl)), agritech ([stadomat.pl](https://stadomat.pl)) i więcej.
 - **55 kontenerów Docker, 35 compose projects, 4 serwery** (Kubernetes OVH + 3 VPS, 12 CPU / 30 GB RAM / 292 GB disk).
 - **`gaca-core`** — AI Bus agregujący 50+ modeli od 11 providerów w jednym endpoincie.
 - **Discovery**: luka walidacyjna w KSeF API v2 znaleziona podczas budowy `ksef-mcp` (faktury walutowe bez VAT w PLN akceptowane wbrew art. 106e ust. 11 UoVAT).

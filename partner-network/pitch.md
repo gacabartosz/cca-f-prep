@@ -25,7 +25,7 @@
 ### 3. Polish localization layer (vertical + region moat)
 - **Jedyne polskie publiczne materiały o Claude Code** (blog `bartoszgaca.pl`, LinkedIn auto-publish daemon)
 - **Pierwszy MCP dla polskiego rynku prawnego/podatkowego** (ksef-mcp już istnieje; `pl-legal-docs` w roadmap)
-- Polish-vertical SaaS w produkcji: `aplikantai.pl` (asystenci AI prawni), `odpisznapismo.pl` (analiza pism urzędowych), `reklamacje24.pl` (UoPK pisma)
+- Polish-vertical SaaS w produkcji: `reklamacje24.pl` (UoPK pisma reklamacyjne, Stripe 4.99 PLN/use), `odpisznapismo.pl` (analiza pism urzędowych), `fixmynotice.com` (EN-market document AI)
 - Headline LinkedIn: "Buduję MVP, MCP i integracje API | Claude Code | CTO @ BeeCommerce" (67 zn., mobile-safe)
 
 ## Dlaczego Anthropic mnie potrzebuje

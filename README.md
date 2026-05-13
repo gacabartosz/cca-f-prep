@@ -13,7 +13,7 @@ Every file is proof of practice. The repo is the application, not a deck. Slash 
 ## Production evidence backing this application
 
 - **6 public MCP servers / 145+ tools**: `linkedin-mcp` (25), `seo-gaca-mcp` (37, on PyPI), `facebook-mcp` (28), `ksef-mcp` (30 — first open-source MCP for Poland's KSeF), `mcp-universal-adapter`, `popcorn` (5).
-- **28+ apps in production**: legal-tech ([aplikantai.pl](https://aplikantai.pl), [odpisznapismo.pl](https://odpisznapismo.pl), [reklamacje24.pl](https://reklamacje24.pl), [fixmynotice.com](https://fixmynotice.com)), SME automation ([biznesbezklikania.pl](https://biznesbezklikania.pl)), agritech ([stadomat.pl](https://stadomat.pl)), and more.
+- **28+ apps in production**: legal-tech ([odpisznapismo.pl](https://odpisznapismo.pl), [reklamacje24.pl](https://reklamacje24.pl), [fixmynotice.com](https://fixmynotice.com)), SME automation ([biznesbezklikania.pl](https://biznesbezklikania.pl)), agritech ([stadomat.pl](https://stadomat.pl)), and more.
 - **55 Docker containers, 35 compose projects, 4 servers** (Kubernetes OVH + 3 VPS, 12 CPU / 30 GB RAM / 292 GB disk).
 - **`gaca-core`** — AI Bus aggregating 50+ models from 11 providers in a single endpoint.
 - **Discovery**: validation gap in KSeF API v2 (Poland's national tax system) found while building `ksef-mcp` — currency invoices accepted without PLN-VAT amount against art. 106e ust. 11 of the Polish VAT Act.

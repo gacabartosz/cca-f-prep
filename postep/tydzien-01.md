@@ -5,7 +5,7 @@
 ## Cele tygodnia
 - [x] Setup repo `cca-f-prep` + pełna struktura + slash commands + subagenty + hooki
 - [x] Pełen draft aplikacji do Partner Network z prawdziwymi danymi (zero placeholderów)
-- [x] 3 case studies (aplikantai, odpisznapismo, biznesbezklikania) — pełne stack i architektura z weryfikowalnych README
+- [x] 3 case studies (reklamacje24, odpisznapismo, biznesbezklikania) — pełne stack i architektura z weryfikowalnych README
 - [x] Tabela 8 reference customers z statusem zgód
 - [x] Push do publicznego GitHub repo `gacabartosz/cca-f-prep`
 - [ ] Pierwszy LinkedIn post anonsujący publiczną naukę do CCA-F + link do repo

@@ -43,7 +43,7 @@ Powód wyboru: profil hybrydowy — buduję produkty na Claude (Build with Claud
 
 W kolejności głębokości doświadczenia:
 
-1. **Legal-tech / regulatory automation** — 3 produkcyjne produkty (aplikantai.pl, odpisznapismo.pl, reklamacje24.pl), MCP server dla polskiego KSeF (e-invoicing), discovery luki walidacyjnej w państwowym API
+1. **Legal-tech / regulatory automation** — 3 produkcyjne produkty (reklamacje24.pl, odpisznapismo.pl, fixmynotice.com), MCP server dla polskiego KSeF (e-invoicing), discovery luki walidacyjnej w państwowym API
 2. **SME / SMB process automation** — biznesbezklikania.pl (suite automatyzacji dla MŚP), n8n pipelines dla MŚP (mail→parsowanie→XLS→chmura), abonamentowy model
 3. **E-commerce** — 12 R&D AI projects w BeeCommerce (employer/equity context), karlik, rentgen, lookbooki, porównywarki
 4. **Agritech** — stadomat.pl (SaaS multi-tenant dla hodowców bydła, IRZ integration, ZUS/ARiMR)
@@ -69,14 +69,14 @@ Pełna tabela: `referencje-klientow.md`. Pre-fill kandydaci poniżej (status zgo
 
 | # | Customer / Product | Industry | Live URL | Stack on Claude | Status zgody | Forma referencji |
 |---|---|---|---|---|---|---|
-| 1 | **aplikantai.pl** (own product) | Legal-tech / law firms | https://aplikantai.pl | React 19 + TS + Vite, Node/Express, PostgreSQL, OpenRouter (Claude 3.5 Sonnet + multi-model), RAG via GitHub knowledge bases, Stripe subscriptions | Bartosz = product owner (auto-zgoda) | Full name + URL |
+| 1 | **reklamacje24.pl** (own product) | B2C legal-tech / consumer rights | https://reklamacje24.pl | Node 18+ + PostgreSQL 14+ + Prisma, Stripe acct_1SO3Io (4.99 PLN/use, P24+BLIK+karta), nginx + pm2, Docker port 4003, GitHub Actions CI/CD, AI image analysis + generation per UoPK, GSC verified | Bartosz = product owner (auto-zgoda) | Full name + URL + Stripe metrics (po decyzji o ujawnieniu) |
 | 2 | **odpisznapismo.pl** (own product) | Legal-tech / consumer | https://odpisznapismo.pl | React + TS + Tailwind, Node/Express, PostgreSQL + Prisma, OpenRouter (Gemini + Claude + GPT), Tesseract OCR, Autopay | Bartosz = product owner (auto-zgoda) | Full name + URL |
 | 3 | **biznesbezklikania.pl** (own product) | SME automation / multi-channel | https://biznesbezklikania.pl | React + TS + React Router + Tailwind, esbuild, Node/Express, Gemini API + Claude-compatible, lead capture, Meta/TikTok CAPI/EAPI, WhatsApp/Messenger inbox | Bartosz = product owner (auto-zgoda) | Full name + URL |
 
 **Supporting evidence (own products, drugi krąg)**:
-- **reklamacje24.pl** — B2C generator pism reklamacyjnych (UoPK), Stripe 4.99 PLN/use, GSC verified
-- **stadomat.pl** — SaaS multi-tenant agritech (status: pre-PMF, 1 testujący user — używam jako *technology* reference, nie *traction* reference)
-- **fixmynotice.com** — analogon odpisznapismo dla rynku EN
+- **stadomat.pl** — SaaS multi-tenant agritech (status: pre-PMF, 1 testujący user — używam jako *technology* reference, nie *traction* reference): per-tenant PostgreSQL isolation, pgBouncer, Stripe + Przelewy24 + Fakturownia, IRZ API integration
+- **ksef-mcp** — pierwszy open-source MCP server dla polskiego KSeF, 30 tools, discovery luki walidacyjnej w państwowym API (art. 106e ust. 11 UoVAT)
+- **seo-gaca-mcp** — opublikowany na PyPI, 37 tools SEO/GEO automation
 
 **External / client references (do potwierdzenia zgodą — pre-list)**:
 - woodconsulting.pl — frontend + backend + PostgreSQL 16, deployed na własnych serwerach (B2B)
@@ -135,7 +135,7 @@ Repo `cca-f-prep` jest publicznym dowodem przygotowania. Linkujemy do niego w ap
 - Niche: KSeF / fintech / legaltech panels
 
 ### D. Vertical-specific sales motion
-- **Legal**: kancelarie 1–10 prawników, doradcy podatkowi, biura rachunkowe — produkty: aplikantai, odpisznapismo, ksef-mcp
+- **Legal**: kancelarie 1–10 prawników, doradcy podatkowi, biura rachunkowe, klienci indywidualni B2C — produkty: reklamacje24, odpisznapismo, fixmynotice, ksef-mcp
 - **SME automation**: e-commerce, gabinety, salony, restauracje — produkty: biznesbezklikania, n8n pipelines
 
 ### E. Mierzalne KPIs przy 6 mc (target, nie obietnica)

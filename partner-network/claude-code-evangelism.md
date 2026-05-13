@@ -19,12 +19,11 @@ Anthropic ma globalny problem akwizycji poza enklawą tech-Twittera: Claude Code
 `pdf-generator` (3 brandy: bartoszgaca, beecommerce, neutral), `seo-inspector`, `reel-maker`, `smart-router` (FusionRoute multi-tier routing), `seo-audit-suite`, `brand-guidelines`, `canvas-design`, `humanizer` (PL + ZH), `team-dev` (19-agent dev pipeline), `team-mar` (21-agent marketing pipeline), `team-strat` (6-agent advisory board), `wiki-update`, `frontend-design`, `analytics-stack-deploy`.
 
 ### C. Production SaaS na Claude / multi-model AI
-1. **aplikantai.pl** — Legal AI SaaS, 24+ asystentów per dziedzina prawa polskiego, OpenRouter (Claude 3.5 Sonnet + Gemini + DeepSeek + Qwen), RAG via GitHub
-2. **odpisznapismo.pl** — Document AI, OCR + LLM generuje odpowiedź na pismo urzędowe w 60s, OpenRouter (multi-model)
-3. **biznesbezklikania.pl** — Automation suite, Gemini API + planned Claude, lead capture, Meta/TikTok CAPI/EAPI, WhatsApp/Messenger inbox
-4. **reklamacje24.pl** — UoPK pisma reklamacyjne, Stripe 4.99 PLN/use
-5. **stadomat.pl** — SaaS multi-tenant agritech (pre-PMF)
-6. **fixmynotice.com** — EN-market analogon odpisznapismo
+1. **reklamacje24.pl** — UoPK pisma reklamacyjne, Stripe acct_1SO3Io 4.99 PLN/use (P24+BLIK+karta), AI image analysis + generation, GSC verified, GitHub Actions CI/CD
+2. **odpisznapismo.pl** — Document AI, OCR + LLM generuje odpowiedź na pismo urzędowe w 60s, OpenRouter (multi-model), RODO-by-design (brak trwałego zapisu dokumentów)
+3. **biznesbezklikania.pl** — Automation suite v4.0, Gemini API + planned Claude, lead capture, Meta/TikTok CAPI/EAPI, WhatsApp/Messenger inbox, admin API, cron loops
+4. **fixmynotice.com** — EN-market analogon odpisznapismo (international reach)
+5. **stadomat.pl** — SaaS multi-tenant agritech (tech reference: per-tenant DB isolation, pgBouncer, Stripe+Przelewy24+Fakturownia, IRZ API; pre-PMF traction)
 
 ### D. Multi-agent orchestration on Claude
 Trzy publiczne pipeline'y zbudowane jako Claude Code skills w `~/.claude/skills/`:
@@ -79,7 +78,7 @@ Każdy mój content / asset to:
 | Pozycjonowanie | "Agencja AI", "AI Consulting" | "Builder, który buduje. Solo. Pokazuje publicznie." |
 | Stack | OpenAI proxy / API wrappers | Claude jako primary, multi-model fallback przez `gaca-core` (50+ modeli, 11 providerów) |
 | Open-source | Niewielki output / brak | 6 MCP servers, 14+ Skills, PyPI package |
-| Polski rynek regulowany | Słabe pokrycie | KSeF MCP (pierwszy), aplikantai (24 asystentów prawnych), odpisznapismo |
+| Polski rynek regulowany | Słabe pokrycie | KSeF MCP (pierwszy open-source dla PL), odpisznapismo (analiza pism urzędowych), reklamacje24 (UoPK pisma, real Stripe revenue) |
 | Content w PL | LinkedIn cringe + AI-generated | Builder voice, "developer w Slacku", konkrety zamiast deklaracji |
 | Infrastructure | Kupują u dostawców | 4 serwery własne, 55 kontenerów Docker, GitOps K8s — pełna ownership |
 | Discovery / bugfinding | n/a | Luka w KSeF API v2 (art. 106e ust. 11 UoVAT) znaleziona podczas budowy MCP |
